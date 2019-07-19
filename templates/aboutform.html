@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+</head>
+    {% load static %}
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<body>
+{#<form action="/aboutform/" method="post" novalidate>#}
+{#    {% csrf_token %}#}
+{#    {{ form_obj.as_p }}#}
+{#    <input type="submit" value="submit">#}
+{#</form>#}
+<div style="margin-top: 60px">
+<form class="form-horizontal" method="post" action="/aboutform/" novalidate>
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="{{ form_obj.user.id_for_label }}" class="col-sm-2 control-label">{{ form_obj.user.label }}</label>
+    <div class="col-sm-10">
+        {{ form_obj.user }}
+        {{ form_obj.user.errors.0 }}
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="{{ form_obj.pwd.id_for_label }}" class="col-sm-2 control-label">{{ form_obj.pwd.label }}</label>
+    <div class="col-sm-10">
+      {{ form_obj.pwd }}
+      {{ form_obj.pwd.errors.0 }}
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="{{ form_obj.gender.id_for_label }}" class="col-sm-2 control-label">{{ form_obj.gender.label }}</label>
+    <div class="col-sm-10">
+        {{ form_obj.gender }}
+        {{ form_obj.gender.errors.0 }}
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="{{ form_obj.hobby.id_for_label }}" class="col-sm-2 control-label">{{ form_obj.hobby.label }}</label>
+    <div class="col-sm-10">
+        {{ form_obj.hobby }}
+        {{ form_obj.hobby.errors.0 }}
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Sign in</button>
+    </div>
+  </div>
+</form>
+</div>
+</body>
+</html>

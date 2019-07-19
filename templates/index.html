@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+    <script src="/static/js/jquery.min.js"></script>
+</head>
+<body>
+{#    <form action="" method="post">#}
+{#        <input name="i1" value="{{ i1 }}">+#}
+{#        <input name="i2" value="{{ i2 }}">=#}
+{#        <input name="i3" value="{{ i3 }}">#}
+{#        <button>add</button>#}
+{#    </form>#}
+<input type="text" name="i1" value="{{ i1 }}">+
+<input type="text" name="i2" value="{{ i2 }}">=
+<input type="text" name="i3" value="{{ i3 }}">
+<button id="add">add</button>
+{#<button onclick="f1()">add</button>#}
+
+<input type="text" name="i11" value="{{ i11 }}">+
+<input type="text" name="i22" value="{{ i22 }}">=
+<input type="text" name="i33" value="{{ i33 }}">
+<button id="add1">add1</button>
+
+</body>
+{######script method implement#}
+{#<script>#}
+{#    function f1(ele) {#}
+{#        var num;#}
+{#        num = parseInt($('[name="i1"]').val()) + parseInt($('[name="i2"]').val());#}
+{#        console.log(num);#}
+{#        $('[name="i3"]').val(num);#}
+{#    }#}
+{#</script>#}
+{######ajax method implement#}
+<script>
+    $("#add").click(
+        function () {
+            $.ajax(
+                {
+                    url:'/calc/',
+                    type:"POST",
+                    data:{
+                        "i1":$('[name="i1"]').val(),
+                        "i2":$('[name="i2"]').val(),
+                    },
+                    success:function (data) {
+                        console.log(data);
+                        $('[name="i3"]').val(data);
+                    }
+                }
+            )
+        }
+    )
+
+
+    $("#add1").click(
+        function () {
+            $.ajax(
+                {
+                    url:'/calc1/',
+                    type:"POST",
+                    data:{
+                        "i1":"data1",
+                        "i2":"data2",
+                        {#"info":["name","age","hobby"]#}
+                        "info":JSON.stringify(["name","age","hobby"])
+                    },
+                    success:function (data){
+                        console.log(data);
+                    }
+                }
+            )
+        }
+    )
+
+
+
+</script>
+</html>
